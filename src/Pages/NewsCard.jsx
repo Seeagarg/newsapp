@@ -27,7 +27,7 @@ function NewsCard(props) {
   }
   return (
     <div>
-    <Card >
+    <Card style={{boxShadow: "5px 10px 18px #888888"}}>
       <CardHeader 
       style={{fontSize:"1.5rem",fontWeight:"bold"}}
         avatar={
