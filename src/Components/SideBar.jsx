@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 // import InboxIcon from '@mui/icons-material/MoveToInbox';
 // import MailIcon from '@mui/icons-material/Mail';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
@@ -24,6 +25,9 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 // import Tooltip from 'react-bootstrap/Tooltip';
 import { Tooltip } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+import DevicesIcon from '@mui/icons-material/Devices';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import '../Pages/Main.css'
 
 
 const drawerWidth = 240;
@@ -99,20 +103,20 @@ const SideBar=({ onCategoryChange })=> {
 
   const arr = [
     {
-        icon:<SportsScoreIcon/>,
+        icon:<SportsScoreIcon fontSize='large'/>,
         name:"SPORTS"
     },
     {
-        icon:<SportsScoreIcon/>,
-        name:"SPORTS"
+        icon:<Diversity3Icon fontSize='large'/>,
+        name:"POLITICS"
     },
     {
-        icon:<SportsScoreIcon/>,
-        name:"Sports News"
+        icon:<DevicesIcon fontSize='large'/>,
+        name:"TECHNOLOGY"
     },
     {
-        icon:<SportsScoreIcon/>,
-        name:"Sports News"
+        icon:<HealthAndSafetyIcon fontSize='large'/>,
+        name:"HEALTH"
     }
   ]    
 
@@ -128,9 +132,10 @@ const SideBar=({ onCategoryChange })=> {
     setOpen(false);
   };
 
-  const handleOnClick=()=>{
-    console.log("1000000")
-    onCategoryChange();
+  const handleOnClick=(name)=>{
+    console.log(name)
+    //function
+    onCategoryChange(name);
   }
 
   return (
@@ -149,9 +154,9 @@ const SideBar=({ onCategoryChange })=> {
               ...(open && { display: 'none' }),
             }}
           >
-            <MenuIcon />
+            <MenuIcon fontSize='large'/>
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography className='title' variant="h6" noWrap component="div" style={{fontSize:"2rem",fontWeight:"bold",fontFamily:"Agbalumo"}}>
             News App
           </Typography>
         </Toolbar>
@@ -165,20 +170,21 @@ const SideBar=({ onCategoryChange })=> {
         <Divider />
         <List style={{ backgroundImage: "linear-gradient(to right bottom, #000711, #001732, #002155, #002777, #272896)",zIndex:0,height:"100vh", color: "white" }}>
           {arr.map((text, index) => (
-            <ListItem key={index} disablePadding sx={{ display: 'block' }} >
+            <ListItem key={index} disablePadding sx={{ display: 'block',marginTop:"3rem",fontFamily:"Agbalumo" }} >
               <ListItemButton
-              onClick={handleOnClick}
+              onClick={()=>handleOnClick(text.name)}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+                  fontFamily:"Agbalumo"
                 }}
               >
               <OverlayTrigger
-                    style={{color:"white",zIndex:3}}
+                    style={{color:"white",zIndex:3,}}
                     placement="right"
                     delay={{ show: 250, hide: 400 }}
-                    overlay={ <Tooltip id="button-tooltip" style={{background:"linear-gradient(to right bottom, #000711, #001732, #002155, #002777, #272896)",border:"1px solid white",borderRadius:"25px",padding:"10px",width:"10rem",color:"white",zIndex:3,marginLeft:"20px"}}>{text.name}</Tooltip>}
+                    overlay={ <Tooltip className='title' id="button-tooltip" style={{background:"linear-gradient(to right bottom, #000711, #001732, #002155, #002777, #272896)",border:"1px solid white",borderRadius:"25px",padding:"10px",width:"10rem",color:"white",zIndex:3,marginLeft:"20px"}}>{text.name}</Tooltip>}
                   >
                 <ListItemIcon
                   sx={{
@@ -191,20 +197,14 @@ const SideBar=({ onCategoryChange })=> {
                   {text.icon}
                 </ListItemIcon>
                 </OverlayTrigger>
-                <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText className='title'  primary={<p style={{fontFamily:"Agbalumo"}}> {text.name} </p>} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-        {/* <Divider /> */}
 
       </Drawer>
       <Outlet/>
-      
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        
-      </Box> */}
     </Box>
     </div>
   );

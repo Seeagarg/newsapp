@@ -9,6 +9,7 @@ function App() {
   const [category, setCategory] = useState('');
 
   const handleCategoryChange = (newCategory) => {
+    console.log("selected cat ",newCategory);
     setCategory(newCategory);
   };
 
